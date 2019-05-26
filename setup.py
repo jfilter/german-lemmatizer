@@ -22,5 +22,6 @@ setup(
     license="MIT",
     packages=["german_lemmatizer"],
     classifiers=classifiers,
+    install_requires=["docker", "joblib", "tqdm"],
 )
 
