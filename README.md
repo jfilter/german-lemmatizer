@@ -18,9 +18,7 @@ You may want to use the Python wrapper: [German Lemmatizer](https://github.com/j
 ## Installation
 
 1. Install [Docker](https://docs.docker.com/).
-2. ```pip install git+https://github.com/jfilter/german-lemmatizer#egg=german_lemmatizer
-
-   ```
+2. `pip install git+https://github.com/jfilter/german-lemmatizer#egg=german_lemmatizer`
 
 ## Usage
 
@@ -31,7 +29,12 @@ You may want to use the Python wrapper: [German Lemmatizer](https://github.com/j
 ```python
 from german_lemmatizer import lemmatize
 
-lemmatize(['Johannes war ein guter Schüler', 'Sabiene sang zahlreiche Lieder'], working_dir='*', chunk_size=10000, n_jobs=1, escape=False)
+lemmatize(
+    ['Johannes war ein guter Schüler', 'Sabiene sang zahlreiche Lieder'],
+    working_dir='*',
+    chunk_size=10000,
+    n_jobs=1,
+    escape=False)
 ```
 
 The list of texts is split into chunks (`chunk_size`) and processed in parallel (`n_jobs`).
