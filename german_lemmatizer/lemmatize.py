@@ -22,9 +22,13 @@ def unescape_text(text):
     return text.replace("\\n", "\n")
 
 
-def process_chunk(c, working_dir, escape):
-    with tempfile.TemporaryDirectory(dir=working_dir) as input_folder:
-        with tempfile.TemporaryDirectory(dir=working_dir) as output_folder:
+def process_chunk(c, i, working_dir, escape):
+    with tempfile.TemporaryDirectory(
+        dir=working_dir, suffix=str(i) + "_input"
+    ) as input_folder:
+        with tempfile.TemporaryDirectory(
+            dir=working_dir, suffix=str(i) + "_output"
+        ) as output_folder:
             client = docker.from_env()
             # image = client.images.pull("filter/german-lemmatizer:0.3.0")
 
@@ -69,8 +73,8 @@ def lemmatize(texts, chunk_size=10000, working_dir=".", escape=False, n_jobs=1):
     chunks = to_chunks(texts, chunk_size)
 
     results = Parallel(n_jobs=n_jobs)(
-        delayed(process_chunk)(c, working_dir, escape)
-        for c in tqdm(chunks, total=(len(texts) // chunk_size) + 1)
+        delayed(process_chunk)(c, i, working_dir, escape)
+        for i, c in tqdm(enumerate(chunks), total=(len(texts) // chunk_size) + 1)
     )
 
     for r_chunk in results:
