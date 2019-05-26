@@ -46,14 +46,19 @@ def process_chunk(c, i, working_dir, escape):
             if escape:
                 commands.append("--escape")
 
-            client.containers.run(
-                docker_image_tag,
-                " ".join(commands),
-                volumes={
-                    input_folder: {"bind": "/input", "mode": "ro"},
-                    output_folder: {"bind": "/output", "mode": "rw"},
-                },
-            )
+            while True:
+                try:
+                    client.containers.run(
+                        docker_image_tag,
+                        " ".join(commands),
+                        volumes={
+                            input_folder: {"bind": "/input", "mode": "ro"},
+                            output_folder: {"bind": "/output", "mode": "rw"},
+                        },
+                    )
+                    break
+                except:
+                    print('failed, next try!')
 
             with open(Path(output_folder + "/data.txt")) as output_file:
                 lines = output_file.readlines()
