@@ -78,7 +78,7 @@ def lemmatize(texts, chunk_size=10000, working_dir=".", escape=False, n_jobs=1):
     chunks = to_chunks(texts, chunk_size)
 
     if n_jobs > 0:
-        results = Parallel(n_jobs=n_jobs)(
+        results = Parallel(n_jobs=n_jobs, backend="multiprocessing")(
             delayed(process_chunk)(c, i, working_dir, escape)
             for i, c in tqdm(enumerate(chunks), total=(len(texts) // chunk_size) + 1)
         )

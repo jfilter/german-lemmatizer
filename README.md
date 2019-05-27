@@ -13,7 +13,7 @@ Built upon:
 
 It works as follows. First [spaCy](https://spacy.io/) tags the token with POS. Then `German Lemmatizer` looks up lemmas on IWNLP and GermanLemma. If they disagree, choose the one from IWNLP. If they agree or only one tool finds it, take it. Try to preserve the casing of the original token.
 
-You may want to use the Python wrapper: [German Lemmatizer](https://github.com/jfilter/german-lemmatizer-docker)
+You may want to use underlying Docker image: [german-lemmatizer-docker](https://github.com/jfilter/german-lemmatizer-docker)
 
 ## Installation
 
