@@ -58,7 +58,7 @@ def process_chunk(c, i, working_dir, escape):
                     )
                     break
                 except:
-                    print('failed, next try!')
+                    print("failed, next try!")
 
             with open(Path(output_folder + "/data.txt")) as output_file:
                 lines = output_file.readlines()
@@ -77,10 +77,16 @@ def lemmatize(texts, chunk_size=10000, working_dir=".", escape=False, n_jobs=1):
 
     chunks = to_chunks(texts, chunk_size)
 
-    results = Parallel(n_jobs=n_jobs)(
-        delayed(process_chunk)(c, i, working_dir, escape)
-        for i, c in tqdm(enumerate(chunks), total=(len(texts) // chunk_size) + 1)
-    )
+    if n_jobs > 0:
+        results = Parallel(n_jobs=n_jobs)(
+            delayed(process_chunk)(c, i, working_dir, escape)
+            for i, c in tqdm(enumerate(chunks), total=(len(texts) // chunk_size) + 1)
+        )
+    else:
+        results = [
+            process_chunk(c, i, working_dir, escape)
+            for i, c in tqdm(enumerate(chunks), total=(len(texts) // chunk_size) + 1)
+        ]
 
     for r_chunk in results:
         for r in r_chunk:
