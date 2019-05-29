@@ -57,8 +57,8 @@ def process_chunk(c, i, working_dir, escape):
                         },
                     )
                     break
-                except:
-                    print("failed, next try!")
+                except Exception as e:
+                    print("failed, next try! " + str(e))
 
             with open(Path(output_folder + "/data.txt")) as output_file:
                 lines = output_file.readlines()
