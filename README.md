@@ -34,12 +34,13 @@ lemmatize(
     working_dir='*',
     chunk_size=10000,
     n_jobs=1,
-    escape=False)
+    escape=False,
+    remove_stop=False)
 ```
 
 The list of texts is split into chunks (`chunk_size`) and processed in parallel (`n_jobs`).
 
-Enable the `escape` parameter if your text contains newslines.
+Enable the `escape` parameter if your text contains newslines. `remove_stop` removes stopwords as defined by spaCy.
 
 ## License
 
