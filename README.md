@@ -18,7 +18,7 @@ You may want to use underlying Docker image: [german-lemmatizer-docker](https://
 ## Installation
 
 1. Install [Docker](https://docs.docker.com/).
-2. `pip install git+https://github.com/jfilter/german-lemmatizer#egg=german_lemmatizer`
+2. `pip install german-lemmatizer`
 
 ## Usage
 
