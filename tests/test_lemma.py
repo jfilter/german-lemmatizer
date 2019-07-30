@@ -39,3 +39,10 @@ def test_lemma_escape():
 
         Idiot.""",
     ]
+
+
+def test_lemma_stop():
+    res = german_lemmatizer.lemmatize(
+        ["Johannes war einer von vielen guten Schülern."], remove_stop=True
+    )
+    assert list(res) == ["Johannes gut Schüler."]
