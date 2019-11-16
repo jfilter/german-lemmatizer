@@ -45,3 +45,9 @@ Enable the `escape` parameter if your text contains newslines. `remove_stop` rem
 ## License
 
 MIT.
+
+## Sponsoring
+
+This work was created as part of a [project](https://github.com/jfilter/ptf) that was funded by the German [Federal Ministry of Education and Research](https://www.bmbf.de/en/index.html).
+
+<img src="./bmbf_funded.svg">
